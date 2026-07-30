@@ -10,10 +10,14 @@ import {
   HStack,
   Image,
   Link,
+  List,
   Stack,
   Text,
+  ListIcon,
+  ListItem
 } from "@chakra-ui/react";
 import ProjectsArray from "./ProjectsArray";
+import { ChevronRightIcon } from "@chakra-ui/icons";
 
 const toEmbedUrl = (href) => {
   const youtubeStandardUrlMatch = href.match(/https?:\/\/(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/i);
@@ -114,14 +118,15 @@ export default function ProjectDetailPage() {
       );
     },
     ul: ({ children }) => (
-      <Stack as="ul" spacing={3} pl={6} py={2}>
+      <List spacing={3} pl={6} py={2}>
         {children}
-      </Stack>
+      </List>
     ),
     li: ({ children }) => (
-      <Box as="li" listStyleType="disc" lineHeight="tall">
-        {children}
-      </Box>
+      <ListItem display="flex" alignItems="flex-start" gap={2} lineHeight="tall">
+        <ListIcon as={ChevronRightIcon} boxSize={6} color="brand.500" mt={1} />
+        <Box flex="1">{children}</Box>
+      </ListItem>
     ),
     img: ({ src, alt }) => (
       <Image src={src} alt={alt} borderRadius="lg" my={4} w="100%" />
